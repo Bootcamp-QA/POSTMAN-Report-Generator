@@ -1,2 +1,4 @@
 # POSTMAN-Report-Generator
-Generate an HTML Report based in JSON POSTMAN results
+Generate an HTML Reports
+
+https://bootcamp-qa.github.io/ReportGenerator/
