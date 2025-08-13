@@ -117,11 +117,20 @@ function generate() {
 
   // Construir el HTML para la documentación
   let html = `
-    <h2>GET - Obtener todos los registros</h2>
+        <h2>Autenticación</h2>
+    <p>Todos los endpoints requieren la siguiente autentificacion: Auth Type: API KEY</p>
+    <pre>{
+  "Key": "apikey",
+  "Value": "API KEY DE TU PROYECTO",
+  "Position": "Headers"
+}</pre>
+    <p>El <code>Key</code> lo obtienes desde Supabase en tu proyecto &gt; Settings &gt; API Keys.</p>
+  
+    <h2>GET - ${tableName} - Obtener todos </h2>
     <p><span class="method GET">GET</span> <code>${baseUrl}</code></p>
     <p>Devuelve todos los registros de la tabla <code>${tableName}</code>.</p>
 
-    <h2>GET - Filtrar por campos</h2>
+    <h2>GET - ${tableName} - Filtrar por campos</h2>
     <p><span class="method GET">GET</span> <code>${baseUrl}?campo=eq.valor&campo2=eq.valor2</code></p>
     <p>Filtra los registros donde campo sea igual a <code>&lt;valor&gt;</code>.</p>
     <p>Campos disponibles para filtrar:</p>
@@ -129,7 +138,7 @@ function generate() {
       ${columns.map(col => `<li>${col.name}</li>`).join('')}
     </ul>
 
-    <h2>POST - Crear nuevo registro</h2>
+    <h2>POST - ${tableName} - Crear nuevo</h2>
     <p><span class="method POST">POST</span> <code>${baseUrl}</code></p>
     <p>Crea un nuevo registro. Campos disponibles:</p>
     <ul>
@@ -138,26 +147,21 @@ function generate() {
     <p><strong>Body de ejemplo:</strong></p>
     <pre>${generatePostBody()}</pre>
 
-    <h2>PATCH - Actualizar un registro</h2>
+    <h2>PATCH - ${tableName} - Editar </h2>
     <p><span class="method PATCH">PATCH</span> <code>${baseUrl}?id=eq.&lt;id&gt;</code></p>
     <p>Actualiza el registro con el ID especificado. Puedes enviar uno o varios campos en el body:</p>
     <pre>${generatePatchBody()}</pre>
 
-    <h2>DELETE - Eliminar un registro</h2>
+    <h2>DELETE - ${tableName} - Eliminar </h2>
     <p><span class="method DELETE">DELETE</span> <code>${baseUrl}?id=eq.&lt;id&gt;</code></p>
     <p>Elimina el registro con el ID especificado.</p>
 
-    <h2>Autenticación</h2>
-    <p>Todos los endpoints requieren la siguiente autentificacion: Auth Type: API KEY</p>
-    <pre>{
-  "Key": "apikey",
-  "Value": "API KEY DE TU PROYECTO",
-  "Position": "Headers"
-}</pre>
-    <p>El <code>Key</code> lo obtienes desde Supabase en tu proyecto &gt; Settings &gt; API Keys.</p>
+
   `;
 
   document.getElementById('docs').innerHTML = html;
+   document.getElementById('form').style.display = 'none';
+  
 }
 
 
@@ -165,3 +169,4 @@ function generate() {
 
 </body>
 </html>
+
